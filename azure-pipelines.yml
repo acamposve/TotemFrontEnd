@@ -49,3 +49,26 @@ stages:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
           ArtifactName: 'drop'
           publishLocation: 'Container'
+
+- stage: Development
+  displayName: 'Deploy to Development'
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - deployment: DeploymentDevelopment
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment: Development
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          - task: AzureWebApp@1
+            displayName: 'Deploy App Service'
+            inputs:
+              azureSubscription: 'Azure subscription 1'
+              appType: 'webAppLinux'
+              appName: 'Azure subscription 1'
+              package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+              runtimeStack: 'NODE|18-lts'
