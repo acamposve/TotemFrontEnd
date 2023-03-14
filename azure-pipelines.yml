@@ -67,8 +67,9 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy App Service'
             inputs:
-              azureSubscription: 'Azure subscription 1'
+              azureSubscription: 'DeloyDev'
               appType: 'webAppLinux'
-              appName: 'Azure subscription 1'
+              appName: 'totemfrontend'
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               runtimeStack: 'NODE|18-lts'
+
