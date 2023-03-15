@@ -64,12 +64,9 @@ stages:
         deploy:
           steps:
 
-          - task: AzureWebApp@1
-            displayName: 'Deploy App Service'
+          - task: AzureStaticWebApp@0
             inputs:
-              azureSubscription: 'DeloyDev'
-              appType: 'webAppLinux'
-              appName: 'totemfrontend'
-              package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              runtimeStack: 'NODE|18-lts'
+              app_location: '/'
+              api_location: 'api'
+              azure_static_web_apps_api_token: $(totemtoken)
 
