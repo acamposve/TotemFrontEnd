@@ -68,5 +68,5 @@ stages:
             inputs:
               app_location: '/'
               api_location: 'api'
-              azure_static_web_apps_api_token: $(totemtoken)
+              azure_static_web_apps_api_token: $(Static-Web-App-Token)
 
