@@ -66,7 +66,7 @@ stages:
 
             - task: AzureStaticWebApp@0
               inputs:
-                app_location: '/'
+                app_location: '/dist/totemfrontend/'
                 api_location: 'api'
                 azure_static_web_apps_api_token: '3fc15732b04ca0cf2168343200a76dc8b2ad1157deb2819b9a600e8271de1b672-90613f22-7a71-4ba1-aa62-0ec4ca4a9e4b01e34850'
           
