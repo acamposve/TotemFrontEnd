@@ -1,0 +1,313 @@
+<div class="fullpage wizard has-keyboard">
+  <div class="container-fluid">
+    <div class="wizard-header">
+      <h1>Solicitud de nuevo tag</h1>
+    </div>
+    <mat-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+        <form
+          [formGroup]="firstFormGroup"
+          (ngSubmit)="saveDetails(firstFormGroup)"
+        >
+          <ng-template matStepLabel>Datos Personales</ng-template>
+          <table class="table table-bordered">
+            <tr>
+              <td colspan="2">
+                <mat-form-field>
+                  <mat-select
+                    name="monto"
+                    placeholder="Seleccione monto"
+                    formControlName="monto"
+                    #montoInput
+                  >
+                    <mat-option
+                      *ngFor="let monto of montos"
+                      [value]="monto.full"
+                    >
+                      {{ monto.full }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field>
+                  <mat-select
+                    name="documentType"
+                    placeholder="Tipo de Documento"
+                    formControlName="documentType"
+                    #documentTypeInput
+                  >
+                    <mat-option
+                      *ngFor="let tipo of tipoDocumento"
+                      [value]="tipo.name"
+                    >
+                      {{ tipo.name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Numero de documento</mat-label>
+                  <input
+                    matInput
+                    placeholder="Ex. Pizza"
+                    formControlName="documentNumber"
+                    #documentNumberInput
+                  />
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Matricula</mat-label>
+                  <input
+                    matInput
+                    placeholder="Ex. Pizza"
+                    formControlName="matricula"
+                    #matriculaInput
+                  />
+                </mat-form-field>
+              </td>
+
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Nombre completo</mat-label>
+                  <input
+                    matInput
+                    placeholder="Ex. Pizza"
+                    formControlName="fullName"
+                    #fullNameInput
+                  />
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Celular</mat-label>
+                  <input
+                    matInput
+                    placeholder="Ex. Pizza"
+                    formControlName="cellPhone"
+                    #cellPhoneInput
+                  />
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Correo Electronico</mat-label>
+                  <input
+                    matInput
+                    placeholder="Ex. Pizza"
+                    formControlName="email"
+                    #emailInput
+                  />
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <div>
+            <button
+              mat-raised-button
+              (ngSubmit)="saveDetails(firstFormGroup)"
+              color="primary"
+              matStepperNext
+            >
+              Continuar
+            </button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Pago</ng-template>
+          <table>
+            <tr>
+              <td>
+                <img
+                  src="assets/img/creditcard.svg"
+                  style="width: 250px; height: 250px"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Pago</td>
+            </tr>
+            <tr>
+              <td class="step-instructions">
+                A continuación deberá realizar el pago mediante una tarjeta de
+                crédito o débito.
+              </td>
+            </tr>
+            <tr>
+              <td>Monto a pagar</td>
+            </tr>
+            <tr>
+              <td>{{ montodisplay }}</td>
+            </tr>
+            <tr>
+              <td>Tarjetas aceptadas</td>
+            </tr>
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <td>
+                      <img
+                        src="assets/img/cards/visa.png"
+                        style="width: 120px"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="assets/img/cards/visaDebit.png"
+                        style="width: 120px"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="assets/img/cards/master.png"
+                        style="width: 70px"
+                      />
+                      <!-- <img src="assets/img/cards/oca.png" style="width: 120px;"> -->
+                    </td>
+                    <td>
+                      <img
+                        src="assets/img/cards/maestro.jpg"
+                        style="width: 120px"
+                      />
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  style="margin-top: 40px"
+                  ng-click="continueToPay()"
+                >
+                  PAGAR
+                </button>
+              </td>
+            </tr>
+          </table>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Impresion de TAG</ng-template>
+        <div class="card" style="width: 75%">
+          <h1>Retire y escanee el tag</h1>
+
+          <div class="step-instructions" style="color: #111111">
+            Por favor retire el tag del expendedor y coloquelo en el lector de
+            codigos de barra
+          </div>
+
+          <!-- div style="width: 100%;min-height: 350px;position: relative;">
+          <div class="preloader-scan" style="transform: scale(2);">
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+
+              <div class="diode">
+                <div class="laser"></div>
+              </div>
+            </ul>
+
+          </div>
+        </div-->
+
+          <div style="width: 100%; min-height: 350px; position: relative">
+            <div>
+              <img src="assets/img/tag.png" style="width: 433px" />
+              <div class="diode">
+                <div class="laser"></div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            *ngIf="data.printQty > 1"
+            style="
+              display: flex;
+              width: 80%;
+              padding: 15px;
+              background-color: #fff9c4;
+              margin: 20px auto 40px auto;
+              border-radius: 13px;
+            "
+          >
+            <div
+              style="
+                min-width: 70px;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+              "
+            >
+              <span
+                class="glyphicon glyphicon-exclamation-sign"
+                aria-hidden="true"
+                style="font-size: 40px"
+              ></span>
+            </div>
+            <div style="text-align: left; padding-left: 10px">
+              <div style="font-weight: 600; font-size: 24px">ATENCION!</div>
+              <div style="font-size: 20px; line-height: 25px">
+                Se imprimieron <strong>cantidad</strong> TAGs. Utilice
+                <strong>SOLO</strong> el que <strong>NO ESTA</strong> marcado
+                con unas cruces.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>
