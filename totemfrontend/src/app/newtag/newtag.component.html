@@ -3,6 +3,7 @@
     <div class="wizard-header">
       <h1>Solicitud de nuevo tag</h1>
     </div>
+
     <mat-stepper linear #stepper>
       <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
         <form
@@ -10,6 +11,8 @@
           (ngSubmit)="saveDetails(firstFormGroup)"
         >
           <ng-template matStepLabel>Datos Personales</ng-template>
+
+
           <table class="table table-bordered">
             <tr>
               <td colspan="2">
@@ -55,9 +58,13 @@
                     matInput
                     placeholder="Ex. Pizza"
                     formControlName="documentNumber"
+                    [matKeyboard]="'documentNumber'"
                     #documentNumberInput
                   />
                 </mat-form-field>
+
+
+
               </td>
             </tr>
             <tr>
@@ -311,3 +318,4 @@
     </mat-stepper>
   </div>
 </div>
+
