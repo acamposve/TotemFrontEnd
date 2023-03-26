@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+body {
+  font-family: (--font-family);
+} 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -26,6 +28,9 @@
 
 .App-link {
   color: #61dafb;
+}
+.navbar-custom {
+  background-color: #265084;
 }
 
 @keyframes App-logo-spin {
