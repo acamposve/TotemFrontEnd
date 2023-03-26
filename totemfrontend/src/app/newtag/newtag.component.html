@@ -1,144 +1,150 @@
 <div class="fullpage wizard has-keyboard">
   <div class="container-fluid">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span>Custom Toolbar</span>
+      </mat-toolbar-row>
+
+    </mat-toolbar>
     <div class="wizard-header">
       <h1>Solicitud de nuevo tag</h1>
     </div>
 
     <mat-stepper linear #stepper>
-      <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+      <mat-step label="Step 1">
         <form
-          [formGroup]="firstFormGroup"
-          (ngSubmit)="saveDetails(firstFormGroup)"
-        >
-          <ng-template matStepLabel>Datos Personales</ng-template>
+        [formGroup]="firstFormGroup"
+        (ngSubmit)="saveDetails(firstFormGroup)"
+      >
+        <ng-template matStepLabel>Datos Personales</ng-template>
 
 
-          <table class="table table-bordered">
-            <tr>
-              <td colspan="2">
-                <mat-form-field>
-                  <mat-select
-                    name="monto"
-                    placeholder="Seleccione monto"
-                    formControlName="monto"
-                    #montoInput
+        <table class="table table-bordered">
+          <tr>
+            <td colspan="2">
+              <mat-form-field>
+                <mat-select
+                  name="monto"
+                  placeholder="Seleccione monto"
+                  formControlName="monto"
+                  #montoInput
+                >
+                  <mat-option
+                    *ngFor="let monto of montos"
+                    [value]="monto.full"
                   >
-                    <mat-option
-                      *ngFor="let monto of montos"
-                      [value]="monto.full"
-                    >
-                      {{ monto.full }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field>
-                  <mat-select
-                    name="documentType"
-                    placeholder="Tipo de Documento"
-                    formControlName="documentType"
-                    #documentTypeInput
+                    {{ monto.full }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field>
+                <mat-select
+                  name="documentType"
+                  placeholder="Tipo de Documento"
+                  formControlName="documentType"
+                  #documentTypeInput
+                >
+                  <mat-option
+                    *ngFor="let tipo of tipoDocumento"
+                    [value]="tipo.name"
                   >
-                    <mat-option
-                      *ngFor="let tipo of tipoDocumento"
-                      [value]="tipo.name"
-                    >
-                      {{ tipo.name }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <mat-label>Numero de documento</mat-label>
-                  <input
-                    matInput
-                    placeholder="Ex. Pizza"
-                    formControlName="documentNumber"
-                    [matKeyboard]="'documentNumber'"
-                    #documentNumberInput
-                  />
-                </mat-form-field>
+                    {{ tipo.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Numero de documento</mat-label>
+                <input
+                  matInput
+                  placeholder="Ex. Pizza"
+                  formControlName="documentNumber"
 
 
+                  [matKeyboard]="'documentNumber'"
+                  #documentNumberInput
+                />
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Matricula</mat-label>
+                <input
+                  matInput
+                  placeholder="Ex. Pizza"
+                  formControlName="matricula"
+                  #matriculaInput
+                />
+              </mat-form-field>
+            </td>
 
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <mat-label>Matricula</mat-label>
-                  <input
-                    matInput
-                    placeholder="Ex. Pizza"
-                    formControlName="matricula"
-                    #matriculaInput
-                  />
-                </mat-form-field>
-              </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Nombre completo</mat-label>
+                <input
+                  matInput
+                  placeholder="Ex. Pizza"
+                  formControlName="fullName"
+                  #fullNameInput
+                />
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Celular</mat-label>
+                <input
+                  matInput
+                  placeholder="Ex. Pizza"
+                  formControlName="cellPhone"
+                  #cellPhoneInput
+                />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Correo Electronico</mat-label>
+                <input
+                  matInput
+                  placeholder="Ex. Pizza"
+                  formControlName="email"
+                  #emailInput
+                />
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
 
-              <td>
-                <mat-form-field class="example-full-width">
-                  <mat-label>Nombre completo</mat-label>
-                  <input
-                    matInput
-                    placeholder="Ex. Pizza"
-                    formControlName="fullName"
-                    #fullNameInput
-                  />
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <mat-label>Celular</mat-label>
-                  <input
-                    matInput
-                    placeholder="Ex. Pizza"
-                    formControlName="cellPhone"
-                    #cellPhoneInput
-                  />
-                </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <mat-label>Correo Electronico</mat-label>
-                  <input
-                    matInput
-                    placeholder="Ex. Pizza"
-                    formControlName="email"
-                    #emailInput
-                  />
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-
-          <div>
-            <button
-              mat-raised-button
-              (ngSubmit)="saveDetails(firstFormGroup)"
-              color="primary"
-              matStepperNext
-            >
-              Continuar
-            </button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <div>
+          <button
+            mat-raised-button
+            (ngSubmit)="saveDetails(firstFormGroup)"
+            color="primary"
+            matStepperNext
+          >
+            Continuar
+          </button>
+        </div>
+      </form>
+        </mat-step>
+      <mat-step label="Step 2">
         <form [formGroup]="secondFormGroup">
+
           <ng-template matStepLabel>Pago</ng-template>
           <table>
             <tr>
               <td>
                 <img
                   src="assets/img/creditcard.svg"
-                  style="width: 250px; height: 250px"
+                  style="width: 150px; height: 150px"
                 />
               </td>
             </tr>
@@ -146,7 +152,7 @@
               <td>Pago</td>
             </tr>
             <tr>
-              <td class="step-instructions">
+              <td>
                 A continuación deberá realizar el pago mediante una tarjeta de
                 crédito o débito.
               </td>
@@ -162,57 +168,20 @@
             </tr>
             <tr>
               <td>
-                <table>
-                  <tr>
-                    <td>
-                      <img
-                        src="assets/img/cards/visa.png"
-                        style="width: 120px"
-                      />
-                    </td>
-                    <td>
-                      <img
-                        src="assets/img/cards/visaDebit.png"
-                        style="width: 120px"
-                      />
-                    </td>
-                    <td>
-                      <img
-                        src="assets/img/cards/master.png"
-                        style="width: 70px"
-                      />
-                      <!-- <img src="assets/img/cards/oca.png" style="width: 120px;"> -->
-                    </td>
-                    <td>
-                      <img
-                        src="assets/img/cards/maestro.jpg"
-                        style="width: 120px"
-                      />
-                    </td>
-                  </tr>
-                </table>
+              tarjetas
               </td>
             </tr>
             <tr>
               <td>
-                <button
-                  type="submit"
-                  class="btn btn-success"
-                  style="margin-top: 40px"
-                  ng-click="continueToPay()"
-                >
-                  PAGAR
-                </button>
+
               </td>
             </tr>
           </table>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
+
+
         </form>
       </mat-step>
-      <mat-step>
+      <mat-step label="Step 3">
         <ng-template matStepLabel>Impresion de TAG</ng-template>
         <div class="card" style="width: 75%">
           <h1>Retire y escanee el tag</h1>
@@ -302,20 +271,20 @@
             </div>
           </div>
         </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
+
+
       </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
-      </mat-step>
+      <mat-step label="Step 4">
+Final
+        </mat-step>
     </mat-stepper>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6px">
+      <button mat-raised-button color="accent" (click)="move(0)">1st</button>
+      <button mat-raised-button color="accent" (click)="move(1)">2nd</button>
+      <button mat-raised-button color="accent" (click)="move(2)">3rd</button>
+      <button mat-raised-button color="accent" (click)="move(3)">4th</button>
+    </div>
+   <!--  -->
   </div>
 </div>
 

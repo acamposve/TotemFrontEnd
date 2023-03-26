@@ -2,6 +2,12 @@
 
 
 html, body { height: 100%; }
+body {
+  background-image: url('assets/img/home/logo-back.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .fullpage {
   width: 100vw;

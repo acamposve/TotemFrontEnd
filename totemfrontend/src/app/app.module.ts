@@ -15,6 +15,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatKeyboardModule } from 'angular-onscreen-material-keyboard';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatButtonModule,
     MatKeyboardModule,
     MatGridListModule,
+    MatToolbarModule,
+    MatIconModule,
 
   ],
   exports:[MatProgressSpinnerModule, MatSelectModule, FormsModule],

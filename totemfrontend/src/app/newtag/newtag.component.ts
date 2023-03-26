@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSelectModule } from '@angular/material/select';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {ErrorStateMatcher} from '@angular/material/core';
+import { FormControl, FormGroupDirective, FormBuilder, NgForm,FormGroup, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
+
+
+
+
 @Component({
   selector: 'app-newtag',
   templateUrl: './newtag.component.html',
@@ -14,15 +18,20 @@ export class NewtagComponent implements OnInit {
 
     monto: ['', Validators.required],
     documentType: ['', Validators.required],
-    documentNumber: new FormControl(''),
-    matricula: new FormControl(''),
-    fullName: new FormControl(''),
-    cellPhone: new FormControl(''),
-    email: new FormControl(''),
+    documentNumber: ['', Validators.required],
+    matricula: ['', Validators.required],
+    fullName: ['', Validators.required],
+    cellPhone: ['', Validators.required],
+    email: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
+
+  thirdFormGroup = this._formBuilder.group({
+    thirdCtrl: ['', Validators.required],
+  });
+
   isEditable = false;
   userDocValue = new FormControl('', [Validators.required]);
   montols: any;
@@ -121,20 +130,22 @@ export class NewtagComponent implements OnInit {
 
 
   preview: string = '';
+  @ViewChild('stepper') stepper: MatStepper;
   constructor(private _formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.personalInfo = 1;
     this.printQty = 0;
     this.payStep = 0;
   }
-
+  move(index: number) {
+    this.stepper.selectedIndex = index;
+  }
   saveDetails(form: any) {
 
     this.montols=this.firstFormGroup.get('monto')?.value;
     localStorage.setItem('monto', this.montols);
-    alert(
-      'SUCCESS!! :-)\n\n' + JSON.stringify(this.firstFormGroup.value, null, 4)
-    );
+
+
     this.personalInfo = 0;
     setTimeout(() => {
       this.montodisplay = localStorage.getItem('monto');
