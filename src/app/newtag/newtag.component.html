@@ -30,10 +30,10 @@
                   #montoInput
                 >
                   <mat-option
-                    *ngFor="let monto of montos"
-                    [value]="monto.full"
-                  >
-                    {{ monto.full }}
+                    *ngFor="let monto of IssuesList"
+                    [value]="monto.valor"
+                  >$
+                    {{ monto.valor }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>

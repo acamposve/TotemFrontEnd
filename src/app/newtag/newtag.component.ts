@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { FormControl, FormGroupDirective, FormBuilder, NgForm,FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { MontosService } from '../services/montos.service';
 
 
 
@@ -106,36 +107,17 @@ export class NewtagComponent implements OnInit {
       name: 'Seat',
     },
   ];
-  montos: any = [
-    {
-      full: '112.50',
-    },
-    {
-      full: '245.00',
-    },
-    {
-      full: '367.50',
-    },
-    {
-      full: '490.00',
-    },
-    {
-      full: '735.00',
-    },
-    {
-      full: '1,102.50',
-    },
-  ];
   selectedCountry: string = 'GB';
-
+  IssuesList: any = [];
 
   preview: string = '';
   @ViewChild('stepper') stepper: MatStepper;
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder, public montosService: MontosService) {}
   ngOnInit(): void {
     this.personalInfo = 1;
     this.printQty = 0;
     this.payStep = 0;
+    this.loadEmployees();
   }
   move(index: number) {
     this.stepper.selectedIndex = index;
@@ -151,5 +133,11 @@ export class NewtagComponent implements OnInit {
       this.montodisplay = localStorage.getItem('monto');
       this.payStep = 1;
     }, 5000);
+  }
+
+  loadEmployees() {
+    return this.montosService.GetIssues().subscribe((data: {}) => {
+      this.IssuesList = data;
+    })
   }
 }

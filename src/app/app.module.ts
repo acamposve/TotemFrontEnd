@@ -17,6 +17,8 @@ import { MatKeyboardModule } from 'angular-onscreen-material-keyboard';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+import { MontosService } from './services/montos.service';
 
 @NgModule({
   declarations: [
@@ -40,10 +42,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatGridListModule,
     MatToolbarModule,
     MatIconModule,
+    HttpClientModule,
 
   ],
   exports:[MatProgressSpinnerModule, MatSelectModule, FormsModule],
-  providers: [],
+  providers: [MontosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
